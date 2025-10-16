@@ -1,1 +1,62 @@
-<h1> front207 </h1>
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Counter</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React / ReactDOM UMD builds -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- Babel standalone to transpile JSX in the browser (development only) -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    function Counter() {
+      const [c, setC] = useState(0);
+
+      const style = {
+        c: {
+          fontSize: '2em',
+          margin: '10px 0',
+          padding: '5px',
+          border: '1px solid #007bff',
+          borderRadius: '4px',
+          fontWeight: 'bold'
+        },
+        b: {
+          padding: '5px 10px',
+          margin: '5px',
+          border: 'none',
+          borderRadius: '3px',
+          cursor: 'pointer',
+          color: 'white',
+        },
+        inc: { backgroundColor: '#28a745' },
+        dec: { backgroundColor: '#dc3545' },
+        res: { backgroundColor: '#007bff' },
+      };
+
+      return (
+        <div style={{ textAlign: 'center', maxWidth: '250px', margin: '10px auto', padding: '10px' }}>
+          <h3>Counter</h3>
+          <div style={style.c}>{c}</div>
+          <div>
+            <button style={{ ...style.b, ...style.inc }} onClick={() => setC(c + 1)}>+</button>
+            <button style={{ ...style.b, ...style.dec }} onClick={() => setC(c - 1)}>-</button>
+            <button style={{ ...style.b, ...style.res }} onClick={() => setC(0)}>Reset</button>
+          </div>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<Counter />);
+  </script>
+</body>
+</html>
